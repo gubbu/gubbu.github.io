@@ -1,10 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <body style="background-color:black;color:aliceblue;">
-        <title>Testing Website !!</title>
-        <h1>Hello World</h1>
-        This beautiful web page was created in 2020. Now in 2021 I have a new link to share! A <a href="snake_start.html">Snake game</a> made in rust with macroquad and web assembly. The Controls are WASD.
-        <img src="img/space.png">
-        <a href="https://opengameart.org/content/solar-system">Source</a>
-    </body>
+
+<head>
+    <style>
+        a:link {
+            color: orange;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:visited {
+            color: darkorange;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: red;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        a:active {
+            color: yellow;
+            background-color: transparent;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body style="background-color:black;color:aliceblue;">
+    <title>Testing Website !!</title>
+    <h1>Hello World</h1>
+    This beautiful web page was created in 2020. Now in 2021 I have a new link to share! A <a
+        href="macroquad_wasm/snake_example/snake_start.html">Snake game</a> made in rust with macroquad and web
+    assembly. The Controls are WASD. What did I learn while constructing this?
+    <ul>
+        <li>the rand crate does not work with Web assembly. macroquad::rand is an alternative for pseudo random number
+            generation.</li>
+        <li>the std::time module does not work with web assembly... But how do I get UNIX Timestamps in u128 format
+            then?</li>
+        <li>if you build with the --release flag for the wasm target: The resulting .wasm file is significantly smaller
+            (2 MB vs 11 MB)</li>
+
+    </ul>
+    Now a second demo is added: A <a href="macroquad_wasm/snow_sim_example/index.html">Snow Simulation</a>!
+    <ul>
+        <li>A Vec<(usize, usize)> was used as the data structure to store the falling/moving snowfalkes. Is this the
+                optimal choice for this? Frequent removal of random elements in the vector occur in this simulation.
+        </li>
+        <li>when your redrawing the screen is conditioned with an if statement (maybe to set a hard limit on the fps,
+            which is unimplemented in the macroquad lib for now) the screen starts to flicker!</li>
+        <li>The basic-http-server is a great tool to test your websites...</li>
+        <li>Format html with Ctrl+Shift+I in VsCode</li>
+    </ul>
+    <img src="img/space.png">
+    <a href="https://opengameart.org/content/solar-system">Source of this beautiful space png</a>
+</body>
+
 </html>
