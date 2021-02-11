@@ -1,0 +1,1 @@
+run the command "basic-http-server ." in this directory.
