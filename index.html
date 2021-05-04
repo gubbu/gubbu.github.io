@@ -64,7 +64,7 @@
         <a href="#about">About</a>
     </div>
     This beautiful web page was created in 2020. Now in 2021 I have a new link to share! A <a
-        href="macroquad_wasm/snake_example/snake_start.html">Snake game</a> made in rust with macroquad and web
+        href="macroquad_wasm/macroquad_snake.html">Snake game</a> made in rust with macroquad and web
     assembly. The Controls are WASD. What did I learn while constructing this?
     <ul>
         <li>the rand crate does not work with Web assembly. macroquad::rand is an alternative for pseudo random number
@@ -75,7 +75,7 @@
             (2 MB vs 11 MB)</li>
 
     </ul>
-    Now a second demo is added: A <a href="macroquad_wasm/snow_sim_example/snowsim.html">Snow Simulation</a>!
+    Now a second demo is added: A <a href="macroquad_wasm/macroquad_snow_sim.html">Snow Simulation</a>!
     <ul>
         <li>A Vec<(usize, usize)> was used as the data structure to store the falling/moving snowfalkes. Is this the
                 optimal choice for this? Frequent removal of random elements in the vector occur in this simulation.
@@ -87,9 +87,16 @@
         <li>Thought: Evaluate purpose fullfilling role of random number generator with such a snow simulation. (equal
             distirubtion of random numbers)</li>
     </ul>
-    Now a <a href="macroquad_wasm/tictactoe_wasm_macroquad/start_tictactoe.html">TicTacToe</a> Game exists too! Sadly
-    currently this does not work. I did not make any changes to the wasm files, meaning the origing has to be a breaking
-    change a)in the web-browser, b) in the javascript.
+    Now a <a href="macroquad_wasm/macroquad_tictactoe.html">TicTacToe</a> Game exists too! Sadly
+    this did not work for a long time after a breaking change occured. I did not make any changes to the wasm files,
+    meaning the origin had to be a breaking
+    change a)in the web-browser, b) in the javascript. <a href="https://github.com/not-fl3/macroquad/issues/221">I later
+        found out</a> the javascript is always updated to the newest version of macroquad. Thats why you should download
+    the javascript and host it yourself to keep these working in stable condition or use a specific version from
+    <a=href="https://not-fl3.github.io/miniquad-samples/mq_js_bundle_0.3.1.js">miniquad-samples like this</a>. I updated
+    the rust macroquad code to 0.3 (many changes occured since 0.2.*) and now hosting the <a
+        href="macroquad_wasm/macroquad_gl.js">up to date javascript myself </a> so that
+    breaking changes and more work can be avoided in the future.
     <hr style="width:100%;">
 
     <table style="width:100%">
@@ -99,21 +106,43 @@
             <th>Link to source Code</th>
         </tr>
         <tr>
-            <td><a href="macroquad_wasm/snow_sim_example/snowsim.html">Snow Simulation</a></td>
+            <td><a href="macroquad_wasm/macroquad_snow_sim.html">Snow Simulation</a></td>
             <td>10.02.2021</td>
             <td>50</td>
         </tr>
         <tr>
-            <td><a href="macroquad_wasm/tictactoe_wasm_macroquad/start_tictactoe.html">TicTacToe</a></td>
+            <td><a href="macroquad_wasm/macroquad_tictactoe.html">TicTacToe</a></td>
             <td>11.02.2021</td>
             <td>94</td>
         </tr>
         <tr>
-            <td><a href="macroquad_wasm/elastic_collisions/elastic_sim_start.html">Elastic Collision Simulation</a>
+            <td><a href="macroquad_wasm/elastic_impulse.html">Elastic Collision Simulation</a>
             </td>
             <td>09.03.2021</td>
             <td>80</td>
         </tr>
+        <tr>
+            <td><a href="macroquad_wasm/rock_paper_scisors_cellular_automata.html">Rock Paper Cisors Cellular
+                    Automata</a>
+            </td>
+            <td> added 04.05.2021</td>
+            <td><a href="https://github.com/gubbu/rust_rock_paper_scissors_automata_macroquad">github repo</a></td>
+        </tr>
+
+        <tr>
+            <td><a href="macroquad_wasm/dda_algorithm.html">DDA algorithm</a>
+            </td>
+            <td>added 05.05.2021</td>
+            <td>80</td>
+        </tr>
+
+        <tr>
+            <td><a href="macroquad_wasm/elementary_cellular_automata.html">Elementary cellular automata rules</a>
+            </td>
+            <td> added 03.05.2021</td>
+            <td>80</td>
+        </tr>
+
     </table>
     <hr style="width:100%;">
     Exploring 2D level generation with <a href="https://github.com/google/evcxr"> Evcxr </a> Jupyter notebooks. The used

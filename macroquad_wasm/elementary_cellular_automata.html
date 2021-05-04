@@ -1,8 +1,9 @@
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>SnowSimulation: Press Space to Pause & R to Reset</title>
+    <title>elementary_cellular_automata</title>
     <style>
         html,
         body,
@@ -21,9 +22,9 @@
 
 <body>
     <canvas id="glcanvas" tabindex='1'></canvas>
-    <!-- Minified and statically hosted version of https://github.com/not-fl3/miniquad/blob/master/native/sapp-wasm/js/gl.js -->
-    <script src="../miniquad.js"></script>
-    <script>load("macroquad_snow_sim.wasm");</script> <!-- Your compiled wasm file -->
+    <!-- Minified and statically hosted version of https://github.com/not-fl3/macroquad/blob/master/js/mq_js_bundle.js -->
+    <script src="macroquad_gl.js"></script>
+    <script>load("elementary_cellular_automata.wasm");</script> <!-- Your compiled wasm file -->
 </body>
 
 </html>
