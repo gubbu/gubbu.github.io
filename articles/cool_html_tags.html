@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Html Tags</title>
+</head>
+
+<body style="padding-right: 5%;padding-left: .25%;">
+    <p>Inspizire den html Quelltext dieser Seite für ein Beispiel der Verwendungs dieser Tags. Inspiriert durch folgendes Video <a href="https://www.youtube.com/watch?v=9lP8TcVJv-I">5 HTML tags you didn't know were a thing</a></p>
+
+    <div style="border: 5px solid;width: 100%;border-radius: 25px; padding: .25%;">
+        <h1 style="padding-left: .25%;">abbr</h1>
+        <div style="border: 2px solid;width: 50%;border-radius: 25px;padding: .25%">
+            Wofür steht <abbr title="Cascading Style Sheets">CSS</abbr>?
+            <br>
+            Wofür steht <abbr title="Hyper Text Markup Language">HTML</abbr>?
+            <br>
+            Wofür steht <abbr title="abbrevation">abbr</abbr>?
+        </div>
+    </div>
+    <br>
+    <div style="border: 5px solid;width: 100%;border-radius: 25px; padding: .25%;">
+        <h1 style="padding-left: .25%;">bdo</h1>
+        <div style="border: 2px solid;width: 50%;border-radius: 25px;padding: .25%">
+            Wofür steht <abbr title="Keine Ahnung jedenfalls dreht es text um">bdo</abbr>?
+            <br>
+            <br>
+            <bdo dir="rtl">Was it a rat I saw?</bdo>
+        </div>
+    </div>
+    <br>
+    <div style="border: 5px solid;width: 100%;border-radius: 25px; padding: .25%;">
+        <h1 style="padding-left: .25%;">kbd</h1>
+        <div style="border: 2px solid;width: 50%;border-radius: 25px;padding: .25%">
+            Lässt es wie tasten aussehen ...? Sieht anders in der Referenz aus.
+            <br>
+            <br>
+            <p>Please press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> to re-render an MDN page.</p>
+        </div>
+    </div>
+    <br>
+    <div style="border: 5px solid;width: 100%;border-radius: 25px; padding: .25%;">
+        <h1 style="padding-left: .25%;"><abbr text="sample">samp</abbr></h1>
+        <div style="border: 2px solid;width: 50%;border-radius: 25px;padding: .25%">
+            Wenn du in python durch 0 teilst...
+            <br>
+            <br>
+            <samp>
+                <pre>
+                >>> 1/0
+                Traceback (most recent call last):
+                File "&lt;stdin&gt;", line 1, in &lt;module&gt;
+                ZeroDivisionError: division by zero
+                </pre>
+            </samp>
+            *Der <b style="color: darkred;">pre</b> tag wurde verwendet, um die Formattierung des Codes beizubehalten.
+        </div>
+    </div>
+    <br>
+    <div style="border: 5px solid;width: 100%;border-radius: 25px; padding: .25%;">
+        <h1 style="padding-left: .25%;"><abbr text="diesmal sind es 2 tags">details tag und summary tag</abbr></h1>
+        <div style="border: 2px solid;width: 50%;border-radius: 10px;padding: .25%">
+            Wenn du eine Kurze Zusammenfassung hast...
+            <br>
+            <br>
+            <details>
+                <summary>
+                    In Welcher Einheit wird in der Physik Kraft gemessen?
+                </summary>
+                Newton (= kg * m * s^{-2})
+            </details>
+            <br>
+            <br>
+            Jetzt mit styling!!
+            <br>
+            <details
+                style="border: 1px solid;padding: .5em; border-radius: .5em;background-image: linear-gradient(white, lightgray);">
+                Details
+                <svg style="padding: .5em">
+                    <circle cx="50" cy="50" r="50" />
+                </svg>
+                <summary>
+                    Summary
+                </summary>
+            </details>
+        </div>
+    </div>
+</body>
+
+</html>
