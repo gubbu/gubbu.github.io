@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    table,
+    th,
+    td {
+        border-bottom: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming 100 QA WIP</title>
+</head>
+
+<body>
+    <h1>100 Programming Questions and answers. WIP</h1>
+    Today is Sep 26 2021.
+    <hr>
+    <table>
+        <tr>
+            <th>Question #</th>
+            <th>Programming Language</th>
+            <th>Question/Task</th>
+            <th style="padding: 10px;">Answer</th>
+        </tr>
+        <tr>
+            <td>#1</td>
+            <td>Java</td>
+            <td>Force the User to Enter a number into Stdin. If the user fails to provide a numeric String that can be
+                parsed to an integer make him stuck in an infinite loop until he provides such a String.</td>
+            <td>
+                <details>
+                    <summary>
+                        A static java function that answers the question.
+                    </summary>
+                    <pre style="border: 1px solid black; padding: 1%;">
+                        <samp>
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class Main {
+
+    /// Force the User to enter a number. If he fails every time to provide a numeric string he will be stuck in an infinite loop.
+    public static int force_user_integer_input_stdin(String request) throws IOException {
+        BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+
+        while (true) {
+            try {
+                System.out.print(request+": ");
+                String age = bf.readLine();
+                Integer parsedage = Integer.parseInt(age);
+                return parsedage;
+            } catch (NumberFormatException e) {
+                System.out.println("you HAVE TO enter a number.");
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        int age = Main.force_user_integer_input_stdin("Please enter a number");
+        System.out.println("yo entered: " + age);        
+    }
+}
+                        </samp>
+                    </pre>
+                </details>
+            </td>
+        </tr>
+
+        <tr style="border-top: 1px black solid;">
+            <td>#2</td>
+            <td>Java</td>
+            <td>Render a Black and White Checkerboard Pattern onto an <abbr
+                    title="in the java case java.awt.image.BufferedImage;">Image</abbr>. Dont load that image from the
+                Hard Drive, do the calculations to generate it in memory! Display that image inside a <abbr
+                    title=" in the java case a javax.swing.JLabel; inside javax.swing.JFrame"> GUI Window</abbr> to the
+                end user.
+            </td>
+            <td>
+                <details>
+                    <pre style="border: 1px solid black;">
+                        <samp>
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.Image;
+
+public class Main {
+
+    public static BufferedImage checkerboard_pattern(int width, int height, int pixel_size) {
+        var img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        for (int x = 0; x < img.getWidth(); x++) {
+            for (int y = 0; y < img.getHeight(); y++) {
+                if (((x / pixel_size + y / pixel_size) % 2) == 0) {
+                    img.setRGB(x, y, 0xffffffff);
+                } else {
+                    img.setRGB(x, y, 0xff000000);
+                }
+            }
+        }
+        return img;
+    }
+
+    public static void show_image(Image image) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new JLabel(new ImageIcon(image)));
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        // pixel size is 10 in this case. If pixel size is set to 1 you get some weird
+        // interference pattern ... at least on my screen.
+        Main.show_image(Main.checkerboard_pattern(500, 500, 10));
+    }
+}
+                        </samp>
+                    </pre>
+                    <summary>
+                        Java solution:
+                    </summary>
+                </details>
+
+            </td>
+        </tr>
+
+        <tr>
+            <td>#3</td>
+            <td>Java</td>
+            <td>Implement the <abbr title=" Rule 110 is known to be Turing complete btw"><a href="https://en.wikipedia.org/wiki/Rule_110">rule 110 cellular automaton</a></abbr>, render
+                its result to an Image and display it inside a GUI Window to the end user.</td>
+            <td>
+                <details>
+                    <summary>
+                        Java solution:
+                    </summary>
+                    <pre style="border: 1px solid black;">
+                        <samp>
+import java.awt.image.BufferedImage;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+
+public class Main {
+
+    public static BufferedImage white_top_right(int width, int height) {
+        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        for (int y = 0; y < img.getHeight(); y++) {
+            for (int x = 0; x < img.getWidth(); x++) {
+                img.setRGB(x, y, 0xff000000); // set it black.
+            }
+        }
+        img.setRGB(img.getWidth() - 1, 0, 0xffffffff); // set top right pixel white.
+        return img;
+    }
+
+    public static void elementary_cellular_automaton(int rule, BufferedImage img, boolean wall) {
+        assert rule <= 255;
+        rule &= 0xff;
+        int wall_int = wall ? 1 : 0;
+        for (int y = 1; y < img.getHeight(); y++) {
+            for (int x = 0; x < img.getWidth(); x++) {
+                int row_above = y - 1;
+                int current_pattern = 0;
+                for (int z = -1; z < 2; z++) {
+                    int shifted_x = x + z;
+                    int block_above = wall_int;
+                    if (shifted_x >= 0 && shifted_x < img.getWidth()) {
+                        block_above = img.getRGB(shifted_x, row_above);
+                        if (block_above == 0xffffffff) {
+                            int shiftindex = 1 - z;
+                            current_pattern |= 1 << shiftindex;
+                        }
+                    }
+                }
+                if ((rule & (1 << current_pattern)) != 0) {
+                    img.setRGB(x, y, 0xffffffff);
+                }
+            }
+        }
+
+    }
+
+    public static void show_image(Image img) {
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().add(new JLabel(new ImageIcon(img)));
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        var rule110 = Main.white_top_right(500, 500);
+        Main.elementary_cellular_automaton(110, rule110, false);
+        var scaled = rule110.getScaledInstance(1000, 1000, BufferedImage.SCALE_FAST);
+        Main.show_image(scaled);
+    }
+}                        
+                        </samp>
+                    </pre>
+                </details>
+            </td>
+        </tr>
+
+    </table>
+
+
+
+
+
+</body>
+
+</html>
