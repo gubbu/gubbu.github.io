@@ -8,6 +8,10 @@
         border-bottom: 1px solid black;
         border-collapse: collapse;
     }
+    pre {
+        border: 1px solid black;
+        border-left: 2px solid blue;
+    }
 </style>
 
 <head>
@@ -38,7 +42,7 @@
                     <summary>
                         A static java function that answers the question.
                     </summary>
-                    <pre style="border: 1px solid black; padding: 1%;">
+                    <pre>
                         <samp>
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -78,13 +82,13 @@ public class Main {
             <td>Java</td>
             <td>Render a Black and White Checkerboard Pattern onto an <abbr
                     title="in the java case java.awt.image.BufferedImage;">Image</abbr>. Dont load that image from the
-                Hard Drive, do the calculations to generate it in memory! Display that image inside a <abbr
+                Hard Drive, do the calculations to generate it in working memory! Display that image inside a <abbr
                     title=" in the java case a javax.swing.JLabel; inside javax.swing.JFrame"> GUI Window</abbr> to the
                 end user.
             </td>
             <td>
                 <details>
-                    <pre style="border: 1px solid black;">
+                    <pre>
                         <samp>
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -125,7 +129,7 @@ public class Main {
                         </samp>
                     </pre>
                     <summary>
-                        Java solution:
+                        Java solution using awt (abstract window toolkit, a java GUI library):
                     </summary>
                 </details>
 
@@ -135,14 +139,15 @@ public class Main {
         <tr>
             <td>#3</td>
             <td>Java</td>
-            <td>Implement the <abbr title=" Rule 110 is known to be Turing complete btw"><a href="https://en.wikipedia.org/wiki/Rule_110">rule 110 cellular automaton</a></abbr>, render
+            <td>Implement the <abbr title=" Rule 110 is known to be Turing complete btw"><a
+                        href="https://en.wikipedia.org/wiki/Rule_110">rule 110 cellular automaton</a></abbr>, render
                 its result to an Image and display it inside a GUI Window to the end user.</td>
             <td>
                 <details>
                     <summary>
-                        Java solution:
+                        Java solution using awt:
                     </summary>
-                    <pre style="border: 1px solid black;">
+                    <pre>
                         <samp>
 import java.awt.image.BufferedImage;
 import java.awt.Image;
@@ -211,6 +216,215 @@ public class Main {
             </td>
         </tr>
 
+        <tr>
+            <td>#4</td>
+            <td>Java</td>
+            <td>
+                <details>
+                    <summary>
+                        Step 1: What is the output of the following Code inside the Vector.java file?
+                    </summary>
+                    <pre>
+                    <samp>
+public class Vector {
+    int x, y;
+
+    public float lenght() {
+        return (float) Math.sqrt((double) (x * x + y * y));
+    }
+
+    public Vector(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+
+        Vector a = new Vector(1, 1);
+        Vector b = new Vector(1, 1);
+        System.out.println("(a == b): " + (a == b));
+        System.out.println("a.equals(b): " + (a.equals(b)));
+
+        Class&lt;?&gt; aclass = a.getClass();
+        Class&lt;?&gt; bclass = b.getClass();
+
+        System.out.println("aclass.equals(bclass): " + aclass.equals(bclass));
+        try{
+            Thread.sleep(5000);
+        }catch(InterruptedException ie){
+            System.err.println(ie);
+        }
+    }
+}
+                    </samp>
+                </pre>
+                <details>
+                    <summary>
+                        Step 2:
+                    </summary>
+                    Modify the equals function accordingly.
+                </details>
+                </details>
+            </td>
+            <td>
+                <details>
+                    <summary>
+                        Step 1: Console Output:
+                    </summary>
+                    <pre>
+(a == b): false
+a.equals(b): false
+aclass.equals(bclass): true
+                    </pre>
+                    <details>
+                        Add the following method to the Vector class Body:
+                        <pre>
+                            <samp>
+    @Override
+    public boolean equals(Object other){
+        if(other == null){
+            return false;
+        }
+        if (other.getClass() != this.getClass()){
+            return false;
+        }
+
+        final Vector other_vec = (Vector) other;
+        return other_vec.x == this.x && this.y == other_vec.y;
+    }
+                            </samp>
+                        </pre>
+                        Note the == still compares Memory adresses, so the output of the Code in this Question after the change above is:
+                        <pre>
+(a == b): false
+a.equals(b): true
+aclass.equals(bclass): true
+                        </pre>
+                        <summary>
+                            Step 2: Modification.
+                        </summary>
+                    </details>
+                </details>
+            </td>
+        </tr>
+
+        <tr>
+            <td>#5</td>
+            <td>Java</td>
+            <td>Write a program that prints out the first 45 Fibbonacci numbers.</td>
+            <td>
+                <details>
+                    <summary>Java solution:</summary>
+                    <pre>
+                        <samp>
+public class Main {
+    
+    //generate Fibbonacci numbers
+    public static void main(String[] args) {
+        int first = 1;
+        int second = 2;
+        for (int i=1; i&lt;46; i++){
+            System.out.println("the "+ i+". Fibbonacci Number is: "+ first);
+            int next = first + second;
+            first = second;
+            second = next;
+        }
+    }
+}
+                        </samp>
+                    </pre>
+                You see the largest Fibbonacci number that can be represented by a Java int (32 bit signed integer type) is the 45. Fibbonacci number: 1836311903.
+                </details>
+            </td>
+        </tr>
+
+        <tr>
+            <td>#6</td>
+            <td>Java</td>
+            <td>UI: Create a 10x10 grid out of 100 Buttons and print the coordinates inside the grid to the console, if the repective Button is pressed.</td>
+            <td>
+                <details>
+                    <summary>Java awt solution.</summary>
+                    <pre>
+                        <samp>
+import java.awt.event.*;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.Point;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.util.HashMap;
+
+public class ButtonGrid implements ActionListener{
+    static final int WIDTH = 10;
+    static final int HEIGHT = 10;
+    JFrame thisframe;
+    HashMap&lt;Point, JButton&gt; buttonmap;
+
+    {
+        buttonmap = new HashMap&lt;&gt;();
+        for(int y=0; y&lt;HEIGHT; y++){
+            for(int x=0; x&lt;WIDTH; x++){
+                String xfromat = String.format("%02d", x);
+                String yfromat = String.format("%02d", y);
+                String coordinate_format = "("+xfromat+","+yfromat+")";
+                JButton btn = new JButton(coordinate_format);
+                buttonmap.put(new Point(x,y), btn);
+                btn.addActionListener(this);
+            }
+        }
+    }
+
+    {
+        thisframe = new JFrame();
+        thisframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    {
+        thisframe.getContentPane().setLayout(new GridBagLayout());
+        for (var entry: buttonmap.entrySet()){
+            Point position = entry.getKey();
+            JButton btn = entry.getValue();
+            GridBagConstraints cons = new GridBagConstraints();
+            cons.gridx = position.y;
+            cons.gridy = position.x;
+            thisframe.getContentPane().add(btn, cons);
+        }
+        thisframe.pack();
+    }
+
+    {
+        //adding a test button for layout constraints...
+        GridBagConstraints cons = new GridBagConstraints();
+        cons.gridx = 0;
+        cons.gridy = HEIGHT;
+        cons.fill = GridBagConstraints.HORIZONTAL;
+        cons.gridwidth = WIDTH;
+        JButton btn = new JButton("GridBagConstraints.HORIZONTAL");
+        thisframe.getContentPane().add(btn, cons);
+    }
+    public ButtonGrid(){
+        this.thisframe.setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        new ButtonGrid();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        for(var entry: this.buttonmap.entrySet()){
+            if (e.getSource() == entry.getValue()){
+                System.out.println(entry.getKey().toString() + "was pressed");
+            }
+        }
+    }
+}
+                        </samp>
+                    </pre>
+                </details>
+            </td>
+        </tr>
     </table>
 
 
