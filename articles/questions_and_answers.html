@@ -8,6 +8,7 @@
         border-bottom: 1px solid black;
         border-collapse: collapse;
     }
+
     pre {
         border: 1px solid black;
         border-left: 2px solid blue;
@@ -258,12 +259,12 @@ public class Vector {
 }
                     </samp>
                 </pre>
-                <details>
-                    <summary>
-                        Step 2:
-                    </summary>
-                    Modify the equals function accordingly.
-                </details>
+                    <details>
+                        <summary>
+                            Step 2:
+                        </summary>
+                        Modify the equals function accordingly.
+                    </details>
                 </details>
             </td>
             <td>
@@ -294,7 +295,8 @@ aclass.equals(bclass): true
     }
                             </samp>
                         </pre>
-                        Note the == still compares Memory adresses, so the output of the Code in this Question after the change above is:
+                        Note the == still compares Memory adresses, so the output of the Code in this Question after the
+                        change above is:
                         <pre>
 (a == b): false
 a.equals(b): true
@@ -333,7 +335,8 @@ public class Main {
 }
                         </samp>
                     </pre>
-                You see the largest Fibbonacci number that can be represented by a Java int (32 bit signed integer type) is the 45. Fibbonacci number: 1836311903.
+                    You see the largest Fibbonacci number that can be represented by a Java int (32 bit signed integer
+                    type) is the 45. Fibbonacci number: 1836311903.
                 </details>
             </td>
         </tr>
@@ -341,7 +344,8 @@ public class Main {
         <tr>
             <td>#6</td>
             <td>Java</td>
-            <td>UI: Create a 10x10 grid out of 100 Buttons and print the coordinates inside the grid to the console, if the repective Button is pressed.</td>
+            <td>UI: Create a 10x10 grid out of 100 Buttons and print the coordinates inside the grid to the console, if
+                the respective Button is pressed.</td>
             <td>
                 <details>
                     <summary>Java awt solution.</summary>
@@ -425,12 +429,149 @@ public class ButtonGrid implements ActionListener{
                 </details>
             </td>
         </tr>
+        <td>#7</td>
+        <td>Java</td>
+        <td>
+            <details>
+                <summary>
+                    What is the output of the following Java code?
+                </summary>
+                <pre>
+                        <samp>
+public class ExceptionsQuestion1 implements AutoCloseable{
+    
+    public void whatHappensNext() throws Exception{
+        //throw new IllegalArgumentException();
+        try(ExceptionsQuestion1 is = new ExceptionsQuestion1()){
+            System.out.print("O");
+        }finally{
+            System.out.print("K");
+        }
+    }
+
+    public String name;
+    public static void main(String[] args) throws Exception {
+        ExceptionsQuestion1 e1 = new ExceptionsQuestion1();
+        e1.whatHappensNext();
+        System.out.println("I");
+        System.out.println(e1.name);
+    }
+    //executes before finally block.
+    @Override
+    public void close() throws Exception {
+        System.out.print("L");
+        
+    }
+}
+                        </samp>
+                    </pre>
+            </details>
+        </td>
+        <td>
+            <details>
+                <summary>Java answer.</summary>
+                <samp>
+                    OLKI
+                    <br>
+                    null
+                </samp>
+                <br>
+                The close() method is called before the programmer defined finally block of AutoCloseable. Since the implemented close() function throws an Exception this Eception has to be passed down to the main function.
+            </details>
+        </td>
+        </tr>
+
+        <tr>
+            <td>#8</td>
+            <td>python</td>
+            <td>
+                <details>
+                    <summary>
+                        How to extract all the paths to .txt files with a python glob expression?
+                        When you have the following directory structure:
+                    </summary>
+                    <pre>
+    <samp>
+╰─ tree                                                
+.
+├── a
+│   └── b
+│       └── c
+│           ├── random1_file.txt
+│           └── random2_file.png
+└── d
+    └── e
+        └── f
+            └── random3_file.txt
+    </samp>
+</pre>
+                </details>
+            </td>
+            <td>
+                <details>
+                    <summary>
+                        Python solution using glob expressions:
+                    </summary>
+                    python interactive mode in "."
+                    <samp>
+                        <pre>
+>>> import glob
+>>> glob.glob("**/*.txt", recursive=True)
+['d/e/f/random3_file.txt', 'a/b/c/randomtxt', 'a/b/c/random2_file.txt']
+                        </pre>
+                    </samp>
+                </details>
+            </td>
+        </tr>
+
+        <tr>
+            <td>#9</td>
+            <td>Java</td>
+            <td>
+                <details>
+                    <summary>
+                        Which of the following functions compiles?
+                    </summary>
+                    A)
+                    <pre>
+                        <samp>
+    public static int methodA(int g){
+        if (g&gt;5){
+            return 2*g;
+        }else{
+            return null;
+        }
+    }
+                        </samp>
+                    </pre>
+                    B)
+                    <pre>
+                        <samp>
+    public static int[] methodB(int g) {
+        if (g&gt;5){
+            return new int[]{g*2};
+        }else{
+            return null;
+        }
+    }
+                        </samp>
+                    </pre>
+                </details>
+            
+            <td>
+                <details>
+                    <summary>A) or B)?</summary>
+                    option B) compiles. Option A) throws the following Compilation error:
+                    <pre style="color:darkred">
+                        <samp>
+Type mismatch: cannot convert from null to int Java(16777235)
+                        </samp>
+                    </pre>
+                    Personally I was kind of confused by that: int can not be converted from null but int[] can ... I prefer Kotlin null safety to eliminate a whole class of Exceptions/panics, and less knowledge/thinking about edge cases is required.
+                </details>
+            </td>
+        </tr>
     </table>
-
-
-
-
-
 </body>
 
 </html>
