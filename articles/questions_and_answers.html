@@ -6,6 +6,7 @@
     th,
     td {
         border-bottom: 1px solid black;
+        padding-bottom: 20px;
         border-collapse: collapse;
     }
 
@@ -24,7 +25,7 @@
 
 <body>
     <h1>100 Programming Questions and answers. WIP</h1>
-    Today is Sep 26 2021.
+    Today (when I started this file) is Sep 26 2021.
     <hr>
     <table>
         <tr>
@@ -75,12 +76,29 @@ public class Main {
                         </samp>
                     </pre>
                 </details>
+                <details>
+                    <summary>python program ...</summary>
+                    <pre>
+                        <samp>
+parsed_integer: int
+while True:
+    userinput: str = input("please enter a number!")
+    try:
+        parsed_integer = int(userinput)
+        break
+    except:
+        print(f"an Error was thrown, while parsing your input. please try again.")
+
+print(f"{parsed_integer = }")
+                        </samp>
+                    </pre>
+                </details>
             </td>
         </tr>
 
         <tr style="border-top: 1px black solid;">
             <td>#2</td>
-            <td>Java</td>
+            <td>Java/Python</td>
             <td>Render a Black and White Checkerboard Pattern onto an <abbr
                     title="in the java case java.awt.image.BufferedImage;">Image</abbr>. Dont load that image from the
                 Hard Drive, do the calculations to generate it in working memory! Display that image inside a <abbr
@@ -134,6 +152,35 @@ public class Main {
                     </summary>
                 </details>
 
+                <details>
+                    <summary>Python solution using tkinter and PIL ImageTk, Image</summary>
+                    <pre>
+                        <samp>
+from tkinter import Tk, Label
+from PIL import ImageTk, Image
+
+root = Tk()
+im = Image.new("RGB", (100, 100), color=(0, 0, 0))
+
+for y in range(im.size[1]):
+    for x in range(im.size[0]):
+        sum = (x//10 + y//10) % 2
+        if sum == 1:
+            im.putpixel((x, y), (255, 255, 255))
+
+
+display = ImageTk.PhotoImage(im)
+
+imagelabel = Label(root)
+#self.__imagelabel.config(image = pilimg)
+imagelabel.config(image=display)
+imagelabel.image = display
+imagelabel.pack()
+
+root.mainloop()
+                        </samp>
+                    </pre>
+                </details>
             </td>
         </tr>
 
@@ -476,7 +523,9 @@ public class ExceptionsQuestion1 implements AutoCloseable{
                     null
                 </samp>
                 <br>
-                The close() method is called before the programmer defined finally block of AutoCloseable. Since the implemented close() function throws an Exception this Eception has to be passed down to the main function.
+                The close() method is called before the programmer defined finally block of AutoCloseable. Since the
+                implemented close() function throws an Exception this Eception has to be passed down to the main
+                function.
             </details>
         </td>
         </tr>
@@ -556,18 +605,111 @@ public class ExceptionsQuestion1 implements AutoCloseable{
     }
                         </samp>
                     </pre>
+
+                    C)
+                    <pre>
+                    <samp>
+    public static Integer methodC(int g){
+        if (g &gt; 5){
+            return 2*g;
+        }
+        return null;
+    }
+                    </samp>
+                </pre>
                 </details>
-            
+
             <td>
                 <details>
-                    <summary>A) or B)?</summary>
-                    option B) compiles. Option A) throws the following Compilation error:
+                    <summary>A), B), C)?</summary>
+                    The Options B) and C) compile. Option A) throws the following Compilation error:
                     <pre style="color:darkred">
                         <samp>
 Type mismatch: cannot convert from null to int Java(16777235)
                         </samp>
                     </pre>
-                    Personally I was kind of confused by that: int can not be converted from null but int[] can ... I prefer Kotlin null safety to eliminate a whole class of Exceptions/panics, and less knowledge/thinking about edge cases is required.
+                    Personally I was kind of confused by that: int can not be converted from null but int[] can ... I
+                    prefer Kotlin null safety to eliminate a whole class of Exceptions/panics, and less
+                    knowledge/thinking about edge cases is required.
+                </details>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                #10
+            </td>
+            <td>(python)</td>
+            <td>
+                <details>
+                    <summary>
+                        What is the oldest known non trivial algorithm known to humans? Code it in python!
+                    </summary>
+                    The <a href="https://de.wikipedia.org/wiki/Euklidischer_Algorithmus">Euclidean algorithm</a>. It
+                    finds the greatest common divider between 2 numbers. For example: The greatest common devider
+                    between 1071 and 462 is 21.
+                </details>
+            </td>
+            <td>
+                <details>
+                    <summary>
+                        Python Code.
+                    </summary>
+                    <pre>
+                        <samp>
+def euclid(a: int, b: int)->int:
+    a, b = min(a,b), max(a, b)
+    while True:
+        c = a%b
+        if c == 0:
+            return b
+        a = b
+        b = c
+
+print(f"{euclid(1071, 462) = }")
+                        </samp>
+                    </pre>
+                    .... It prints our answer 21!
+                </details>
+            </td>
+        </tr>
+        <tr>
+            <td>#11</td>
+            <td>(python)</td>
+            <td>Write a function that expects an integer and returns a boolean. It returns True if the given integer is
+                prime, False otherwise. Find the brute force solution first. Is there a more efficient method?</td>
+            <td>
+                <details>
+                    <summary>
+                        the solution to this problem is quite interesting and presented in the <a
+                            href="./finding_primes.html">
+                            following notebook!</a>
+                            Python code Simple brute force Solution
+                    </summary>
+                    <pre>
+                            <samp>
+    def is_prime_bad(x: int)->bool:
+        for i in range(2, x):
+            if x%i == 0:
+                return False
+        return True
+                            </samp>
+                        </pre>
+                    <details>
+                        <summary>
+                            Advanced solution:
+                        </summary>
+                        <pre>
+                                <samp>
+from math import sqrt
+
+def is_prime(x: int)->bool:
+    for i in range(2, int(sqrt(x))+1):
+        if x%i == 0:
+            return False
+    return True
+                                </samp>
+                            </pre>
+                    </details>
                 </details>
             </td>
         </tr>
