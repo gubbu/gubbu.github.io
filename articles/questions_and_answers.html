@@ -474,6 +474,33 @@ public class ButtonGrid implements ActionListener{
                         </samp>
                     </pre>
                 </details>
+                <details>
+                    <summary>
+                        python tkinter solution.
+                    </summary>
+                    <pre>
+                        <samp>
+from tkinter import Tk, Button
+
+WIDTH = 10
+HEIGHT = 10
+
+root = Tk()
+for y in range(HEIGHT):
+    for x in range(WIDTH):
+        def generate_print_function(x: int, y: int):
+            def the_print_function():
+                print(f"Button {x=} {y=} pressed")
+            return the_print_function
+
+        btn = Button(root, text=f"{x = } {y = }",
+                     command=generate_print_function(x, y))
+        btn.grid(row=y, column=x)
+
+root.mainloop()
+                        </samp>
+                    </pre>
+                </details>
             </td>
         </tr>
         <td>#7</td>
