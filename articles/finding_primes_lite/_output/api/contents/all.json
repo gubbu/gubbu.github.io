@@ -1,0 +1,25 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2022-02-07T00:16:08.504953Z",
+      "format": null,
+      "last_modified": "2022-02-06T23:26:20.184189Z",
+      "mimetype": null,
+      "name": "finding_primes.ipynb",
+      "path": "finding_primes.ipynb",
+      "size": 51388,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2022-02-07T00:16:08.504953Z",
+  "format": "json",
+  "last_modified": "2022-02-07T00:16:08.504953Z",
+  "mimetype": null,
+  "name": "",
+  "path": "",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
