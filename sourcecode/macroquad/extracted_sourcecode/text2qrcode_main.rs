@@ -15,7 +15,7 @@ async fn main() {
             macroquad::math::Vec2::new(macroquad::window::screen_width(), 30.),
             &mut current_string,
         ) {
-            println!("Editbodx");
+            //println!("Editbodx");
             let code = qrcode::QrCode::new(&current_string).unwrap();
             let string = code
                 .render()
@@ -33,6 +33,7 @@ async fn main() {
                 (macroquad::window::screen_width() - 2.0 * quiet_zone) / qr_code_width as f32;
             let block_height =
                 (macroquad::window::screen_height() - 2.0 * quiet_zone) / qr_code_height as f32;
+            let block_size = block_width.min(block_height);
             let mut current_x = 0;
             let mut current_y = 0;
             for block in qr_string.chars() {
@@ -41,13 +42,13 @@ async fn main() {
                     current_y += 1;
                     continue;
                 } else if block == '#' {
-                    let block_x = current_x as f32 * block_width + quiet_zone;
-                    let block_y = current_y as f32 * block_height + quiet_zone;
+                    let block_x = current_x as f32 * block_size + quiet_zone;
+                    let block_y = current_y as f32 * block_size + quiet_zone;
                     macroquad::shapes::draw_rectangle(
                         block_x,
                         block_y,
-                        block_width,
-                        block_height,
+                        block_size,
+                        block_size,
                         macroquad::color::colors::BLACK,
                     );
                 }
