@@ -30,6 +30,8 @@
         .topnav {
             overflow: hidden;
             background-color: rgb(253, 196, 120);
+            background-image: linear-gradient(to right, rgb(253, 196, 120), rgb(253, 151, 120));
+            border-radius: 10px;
         }
 
         .topnav a {
@@ -50,12 +52,20 @@
             background-color: #ff9900;
             color: white;
         }
+
     </style>
 </head>
 
-<body style="background-color:rgb(255, 255, 255);color:rgb(1, 0, 82);padding: 0.5%;">
+<body style="color:rgb(1, 0, 82);padding: 0.5%; background-image: 'world_map.svg';">
     <title>Testing Website !!</title>
-    <h1 style="text-align: center;">Hello World</h1>
+    <div style="padding: 10px; text-align: center;position: relative;">
+        <image src="world_map.svg" alt="a map of the world Creative Commons simple-world-map by flekshas is licensed under CC BY (https://github.com/flekschas/simple-world-map)" style="width: 45%;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);color: rgba(211, 211, 211, 0.664);mask-repeat: repeat;">
+            <h1>Hello World</h1>
+        </div>
+    </div>
+
+
     <hr style="width:100%;color: #ff9900;">
     <div class="topnav">
         <a class="active" href="#home">Home</a>
@@ -102,7 +112,7 @@
         breaking changes and more work can be avoided in the future.
         <hr style="width:100%;">
 
-        <table style="width:100%">
+        <table style="width:100%;">
             <tr>
                 <th>Macroquad Wasm App</th>
                 <th> Date of creation</th>
@@ -249,7 +259,9 @@
                         <td><a href="articles/finding_primes.html">Finding Prime + RSA</a></td>
                         <td> 2022</td>
                         <td>I had a simple application example task: given the public key (n, e) = (7387, 1357) decrypt the intercepted message: (2133, 429, 1126). The letters of the original message where converted to numbers using the following sheme: (A, 11), (B, 12), (C, 13), ..., (Y, 35), (Z, 36) <!-- <a href="./articles/finding_primes_lite/_output/index.html">Local Jupyter Lite link</a>  -->>
-                            <a href="./articles/finding_primes_lite/_output/lab?path=finding_primes.ipynb">Jupyter Lite Notebook</a></td>
+                            <a href="./articles/finding_primes_lite/_output/lab?path=finding_primes.ipynb">Jupyter Lite Notebook (link only works on localhost....)</a>
+                            <a href=""></a>
+                        </td>
                     </tr>
                     <tr>
                         <td><a href="macroquad_wasm/my_animation_ideas.html">macroquad funny animations</a></td>
@@ -258,6 +270,9 @@
                     </tr>
                 </table>
             </div>
+
+
+
 
 </body>
 
