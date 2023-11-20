@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/matrixmaths/static/css/main.f5a6d5a7.css",
+    "main.js": "/matrixmaths/static/js/main.1f16901d.js",
+    "static/js/787.2affd11e.chunk.js": "/matrixmaths/static/js/787.2affd11e.chunk.js",
+    "index.html": "/matrixmaths/index.html",
+    "main.f5a6d5a7.css.map": "/matrixmaths/static/css/main.f5a6d5a7.css.map",
+    "main.1f16901d.js.map": "/matrixmaths/static/js/main.1f16901d.js.map",
+    "787.2affd11e.chunk.js.map": "/matrixmaths/static/js/787.2affd11e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f5a6d5a7.css",
+    "static/js/main.1f16901d.js"
+  ]
+}
